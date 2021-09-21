@@ -7,20 +7,42 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+env:
+  RLM_LICENSE: 5053@104.46.46.229
+
+
 jobs:
-  processing:
-    runs-on: ubuntu-latest
-    container: ghcr.io/anybody/anybodycon-linux:7.4.4-0
+
+  test-windows:
+    runs-on: [windows-2022]
+    container: ghcr.io/anybody/anybodycon-windows:latest
 
     steps:
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
+      - name: test AnyBody in python
+        env:
+          RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
+        python: |
+          import anypytools
+          print(anypytools.tools.anybodycon_version())
+
+
+  test-linux:
+    runs-on: ubuntu-latest
+    container: ghcr.io/anybody/anybodycon-linux:latest
+
+    steps:
+      - uses: actions/checkout@v2
+
       - name: Run AnyBody using wine
+        env:
+          RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
         run: wine ".wine/drive_c/Program Files/AnyBody Technology/AnyBody.7.3/AnyBodyCon.exe" /ni
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: test AnyBody python
+        env:
+          RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
+        python: |
+          import anypytools
+          print(anypytools.tools.anybodycon_version())
