@@ -25,10 +25,14 @@ jobs:
         env:
           RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
         run: |
-          whoami
-          echo $USER
-          echo $HOME
           wine "/.wine/drive_c/Program Files/AnyBody Technology/AnyBody.7.3/AnyBodyCon.exe" /ni
+
+      - name: Run AnyBody shortcut
+        env:
+          RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
+        run: |
+          anybodycon /ni
+
 
       - name: test AnyBody python
         env:
