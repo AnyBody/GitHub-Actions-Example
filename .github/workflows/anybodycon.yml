@@ -23,7 +23,8 @@ jobs:
       - name: test AnyBody in python
         env:
           RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
-        python: |
+        shell: python
+        run: |
           import anypytools
           print(anypytools.tools.anybodycon_version())
 
@@ -43,6 +44,7 @@ jobs:
       - name: test AnyBody python
         env:
           RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
-        python: |
+        shell: python
+        run: |
           import anypytools
           print(anypytools.tools.anybodycon_version())
