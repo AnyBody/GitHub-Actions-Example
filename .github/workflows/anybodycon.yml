@@ -17,7 +17,7 @@ jobs:
 
   processing:
     runs-on: ubuntu-latest
-    container: ghcr.io/anybody/anybodycon-linux:7.3.4-1
+    container: ghcr.io/anybody/anybodycon-linux:latest
 
     steps:
       - uses: actions/checkout@v2
