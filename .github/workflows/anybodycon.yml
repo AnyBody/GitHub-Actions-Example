@@ -10,7 +10,6 @@ on:
 
 env:
   RLM_LICENSE: 5053@104.46.46.229
-  WINEPREFIX: /root/.wine
 
 
 jobs:
