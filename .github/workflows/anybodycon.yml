@@ -24,7 +24,9 @@ jobs:
       - name: Run AnyBody using wine
         env:
           RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
-        run: wine ".wine/drive_c/Program Files/AnyBody Technology/AnyBody.7.3/AnyBodyCon.exe" /ni
+        run: |
+          whoami
+        # wine ".wine/drive_c/Program Files/AnyBody Technology/AnyBody.7.3/AnyBodyCon.exe" /ni
 
       - name: test AnyBody python
         env:
