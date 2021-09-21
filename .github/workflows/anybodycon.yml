@@ -7,31 +7,16 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+
 env:
   RLM_LICENSE: 5053@104.46.46.229
 
 
 jobs:
 
-  test-windows:
-    runs-on: [windows-2022]
-    container: ghcr.io/anybody/anybodycon-windows:latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: test AnyBody in python
-        env:
-          RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
-        shell: python
-        run: |
-          import anypytools
-          print(anypytools.tools.anybodycon_version())
-
-
-  test-linux:
+  processing:
     runs-on: ubuntu-latest
-    container: ghcr.io/anybody/anybodycon-linux:latest
+    container: ghcr.io/anybody/anybodycon-linux:7.3.4-1
 
     steps:
       - uses: actions/checkout@v2
