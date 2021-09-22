@@ -16,6 +16,7 @@ env:
 jobs:
 
   processing:
+    runs-on: ubuntu-latest
     container: ghcr.io/anybody/anybodycon-linux:latest
 
     steps:
