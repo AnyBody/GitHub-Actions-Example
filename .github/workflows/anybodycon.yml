@@ -37,7 +37,7 @@ jobs:
           import anypytools 
           app = anypytools.AnyPyProcess()
           macro = [
-            'load "StandingModel.Main.any"'',
+            'load "StandingModel.Main.any"',
             'operation Main.RunApplication',
             'run',
             'classoperation Main.Study.Output.Abscissa.t "Dump"',
