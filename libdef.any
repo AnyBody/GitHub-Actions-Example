@@ -1,2 +1,5 @@
-// Here we use the AMMR shipped with AnyBody. 
+// If you need the AnyBody Managed Model Repository (AMMR), 
+// then include it from the installation directory. 
+// It is available with the installed AnyBody. 
+
 #include "<ANYBODY_PATH_INSTALLDIR>/AMMR/libdef.any"

@@ -14,7 +14,6 @@ env:
 
 
 jobs:
-
   processing:
     runs-on: ubuntu-latest
     container: ghcr.io/anybody/anybodycon-linux:latest
@@ -37,11 +36,11 @@ jobs:
           import anypytools 
           app = anypytools.AnyPyProcess()
           macro = [
-            'load "StandingModel.Main.any"',
-            'operation Main.RunApplication',
+            'load "knee.main.any"',
+            'operation Main.MyStudy.InverseDynamics',
             'run',
-            'classoperation Main.Study.Output.Abscissa.t "Dump"',
-            'classoperation Main.Study.Output.Model.BodyModel.SelectedOutput "Dump"',
+            'classoperation Main.MyStudy.Output.Abscissa.t "Dump"',
+            'classoperation Main.MyStudy.Output.MomentArm "Dump"',
           ]
           results = app.start_macro(macro)
           

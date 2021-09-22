@@ -1,6 +1,6 @@
 # Processing AnyBody Models with GitHub actions
 
-This is a "proof of concept" to enble processing and testing of AnyBody models on freely available compute resources in the cloud. This repository contains a simple standing model, which automatically run/tested every time a new commit is pushed to the repository. 
+This is a "proof of concept" to enble processing and testing of AnyBody models on freely available compute resources in the cloud. This repository contains a simple toy model, which is automatically run/tested every time a new commit is pushed to the repository. 
 
 This workflow uses GitHub actions to run AnyBody on GitHub's linux machines in the cloud. The only requirement is a 'floating' license for AnyBody. 
 
