@@ -8,10 +8,17 @@ This workflow uses GitHub actions to run AnyBody on GitHub's linux machines in t
 
 The cloud workflow is defined in the [.github/workflows/anybodycon.yml file](.github/workflows/anybodycon.yml). 
 
-To use AnyBody in GitHub actions you must specify our linux docker container with AnyBody preinstalled:
+To use AnyBody in GitHub actions you must specify our linux docker `container:` with AnyBody preinstalled:
 
 ```yaml
-container: ghcr.io/anybody/anybodycon-linux:latest
+jobs:
+  job-with-anybody:
+    runs-on: ubuntu-latest
+    container: ghcr.io/anybody/anybodycon-linux:latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - run: anybodycon -m macrofile.anymcr          
 ```
 
 AnyBody can only run if you have a valid license. It requires a floating license and license server which is exposed to the internet. 
@@ -25,7 +32,7 @@ env:
 
 When the license server is publicly available on the internet, it must be secured with a password. 
 
-The license server password is also defined with an environment variable (`RLM_LICENSE_PASSWORD`), but to prevent anyone from obtaining the password it should be stored with [GitHub system for encrypted screets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
+The license server password is also defined with an environment variable (`RLM_LICENSE_PASSWORD`), but to prevent anyone from obtaining the password it should be stored with [GitHub's system for encrypted screets](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
 With that in place the license server password can then be specified in the steps that launch AnyBody: 
 
