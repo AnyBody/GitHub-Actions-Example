@@ -9,35 +9,45 @@ on:
 
 
 env:
+  # The AnyBody license server <port>@<address>
   RLM_LICENSE: 5053@104.46.46.229
 
 
 jobs:
 
   processing:
-    runs-on: ubuntu-latest
     container: ghcr.io/anybody/anybodycon-linux:latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run AnyBody using wine
-        env:
-          RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
-        run: |
-          wine "/.wine/drive_c/Program Files/AnyBody Technology/AnyBody.7.3/AnyBodyCon.exe" /ni
-
-      - name: Run AnyBody shortcut
+      - name: Run AnyBodyCon directly
         env:
           RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
         run: |
           anybodycon /ni
+          # python processing-script.py 
 
-
-      - name: test AnyBody python
+      - name: Run processing with Python
         env:
           RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
         shell: python
         run: |
-          import anypytools
-          print(anypytools.tools.anybodycon_version())
+          import anypytools 
+          app = anypytools.AnyPyProcess()
+          macro = [
+            'load "StandingModel.Main.any"'',
+            'operation Main.RunApplication',
+            'run',
+            'classoperation Main.Study.Output.Abscissa.t "Dump"',
+            'classoperation Main.Study.Output.Model.BodyModel.SelectedOutput "Dump"',
+          ]
+          results = app.start_macro(macro)
+          
+          df = results.to_dataframe(index_var="Main.Studies.InverseDynamicStudy.Output.Abscissa.t")
+          df.to_pickle("result.pkl.bz2")
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Processing results
+          path: result.pkl.bz2

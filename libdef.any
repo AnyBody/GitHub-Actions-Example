@@ -1,0 +1,2 @@
+// Here we use the AMMR shipped with AnyBody. 
+#include "<ANYBODY_PATH_INSTALLDIR>/AMMR/libdef.any"
