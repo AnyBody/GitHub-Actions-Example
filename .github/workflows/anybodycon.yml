@@ -45,7 +45,7 @@ jobs:
           ]
           results = app.start_macro(macro)
           
-          df = results.to_dataframe(index_var="Main.Studies.InverseDynamicStudy.Output.Abscissa.t")
+          df = results.to_dataframe()
           df.to_pickle("result.pkl.bz2")
 
       - uses: actions/upload-artifact@v2
