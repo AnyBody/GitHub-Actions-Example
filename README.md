@@ -15,10 +15,7 @@ jobs:
   job-with-anybody:
     runs-on: ubuntu-latest
     container: ghcr.io/anybody/anybodycon-linux:latest
-    
-    steps:
-      - uses: actions/checkout@v2
-      - run: anybodycon -m macrofile.anymcr          
+...    
 ```
 
 AnyBody can only run if you have a valid license. It requires a floating license and license server which is exposed to the internet. 
