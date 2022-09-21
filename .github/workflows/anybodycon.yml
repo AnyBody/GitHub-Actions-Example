@@ -6,12 +6,8 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-
-
-env:
-  # The AnyBody license server <port>@<address>
-  RLM_LICENSE: 5053@104.46.46.229
-
+  schedule:
+    - cron: 0 3 * * 6
 
 jobs:
   processing:
@@ -23,14 +19,16 @@ jobs:
 
       - name: Run AnyBodyCon directly
         env:
-          RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
+          RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_TEST_SERVER_PASSWORD }}
+          RLM_LICENSE: ${{ secrets.LICENSE_TEST_SERVER }}
         run: |
           anybodycon /ni
           # python processing-script.py 
 
       - name: Run processing with Python
         env:
-          RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_PASSWORD }}
+          RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_TEST_SERVER_PASSWORD }}
+          RLM_LICENSE: ${{ secrets.LICENSE_TEST_SERVER }}
         shell: python
         run: |
           import anypytools 
