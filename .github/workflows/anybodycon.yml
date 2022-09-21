@@ -17,7 +17,7 @@ jobs:
 
 
     steps:
-      - run: usermod -a -G root $MAMBA_USER
+      - run: sudo usermod -a -G root $MAMBA_USER
       
       - uses: actions/checkout@v3
 
