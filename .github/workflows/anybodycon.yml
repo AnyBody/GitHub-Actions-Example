@@ -10,9 +10,22 @@ on:
     - cron: 0 3 * * 6
 
 jobs:
-  processing:
+  configure:
+    # https://github.com/aws/aws-cdk/issues/15179
     runs-on: ubuntu-latest
-    container: ghcr.io/anybody/anybodycon-linux:latest
+    outputs:
+      uid_gid: ${{ steps.get-user.outputs.uid_gid }}
+    steps:
+      - id: get-user
+        run: echo "::set-output name=uid_gid::$(id -u):$(id -g)"
+
+  processing:
+    needs: configure
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/anybody/anybodycon-linux:latest
+      options: --user ${{ needs.configure.outputs.uid_gid }}
+
 
     steps:
       - uses: actions/checkout@v3
