@@ -16,9 +16,7 @@ jobs:
       image: ghcr.io/anybody/anybodycon-linux:latest
 
 
-    steps:
-      - run: sudo usermod -a -G root $MAMBA_USER
-      
+    steps:     
       - uses: actions/checkout@v3
 
       - name: Run AnyBodyCon directly
