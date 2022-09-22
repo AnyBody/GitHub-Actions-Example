@@ -1,4 +1,5 @@
 # Processing AnyBody models with GitHub Actions
+[![CI](https://github.com/AnyBody/GitHub-Actions-Example/actions/workflows/anybodycon.yml/badge.svg)](https://github.com/AnyBody/GitHub-Actions-Example/actions/workflows/anybodycon.yml)
 
 This is a "proof of concept" to enble processing and testing of AnyBody models on freely available compute resources in the cloud. This repository contains a simple toy model, which is automatically run/tested every time a new commit is pushed to the repository. 
 
