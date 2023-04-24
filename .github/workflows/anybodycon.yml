@@ -47,7 +47,7 @@ jobs:
           df = results.to_dataframe()
           df.to_pickle("result.pkl.bz2")
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: Processing results
           path: result.pkl.bz2
