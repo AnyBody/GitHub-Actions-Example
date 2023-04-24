@@ -50,5 +50,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: Processing results
-          path: result.pkl.bz2
           if-no-files-found: error
+          path: result.pkl.bz2
