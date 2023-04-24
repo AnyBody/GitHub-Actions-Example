@@ -11,11 +11,11 @@ on:
 
 jobs:
   processing:
-    runs-on:  [${{ matrix.os }}, Linux ]
+    runs-on: [self-hosted, Linux ]
 
-    strategy:
-      matrix:
-        os: [ubuntu-latest, self-hosted]
+    # strategy:
+    #   matrix:
+    #     os: [ubuntu-latest, self-hosted]
 
     container: ghcr.io/anybody/anybodycon-linux-github-actions:latest
     env:
