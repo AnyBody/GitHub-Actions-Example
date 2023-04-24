@@ -11,7 +11,7 @@ on:
 
 jobs:
   processing:
-    runs-on: [${{ matrix.machine-type }}, linux]
+    runs-on: [ ${{ matrix.os }}, Linux ]
     container: ghcr.io/anybody/anybodycon-linux-github-actions:latest
     env:
       RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_TEST_SERVER_PASSWORD }}
@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix: 
-        machine-type: [ubuntu-latest, self-hosted]
+        os: [ ubuntu-latest, self-hosted ]
 
     steps:     
       - uses: actions/checkout@v3
