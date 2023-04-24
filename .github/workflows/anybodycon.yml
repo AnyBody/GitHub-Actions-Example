@@ -52,3 +52,4 @@ jobs:
           name: Processing results
           if-no-files-found: error
           path: result.pkl.bz2
+
