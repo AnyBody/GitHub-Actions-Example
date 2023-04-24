@@ -11,11 +11,15 @@ on:
 
 jobs:
   processing:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.runs-on }}
     container: ghcr.io/anybody/anybodycon-linux-github-actions:latest
     env:
       RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_TEST_SERVER_PASSWORD }}
       RLM_LICENSE: ${{ secrets.LICENSE_TEST_SERVER }}
+
+    strategy:
+      matrix: 
+        runs-on: [ubuntu-latest, self-hosted]
 
     steps:     
       - uses: actions/checkout@v3
