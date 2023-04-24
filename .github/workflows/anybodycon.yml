@@ -20,7 +20,7 @@ jobs:
       RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_TEST_SERVER_PASSWORD }}
       RLM_LICENSE: ${{ secrets.LICENSE_TEST_SERVER }}
 
-    runs-on: [self-hosted, Linux ]
+    runs-on: [ "${{ matrix.os }}" , Linux ]
 
     steps:     
       - uses: actions/checkout@v3
