@@ -12,6 +12,7 @@ on:
 jobs:
   processing:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, self-hosted]
 
