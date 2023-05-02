@@ -14,20 +14,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - group: ubuntu-runners
-            label: ubuntu-latest
-          - group: anybody-hosted
-            label: Linux
+        os: [ubuntu-latest, self-hosted-linux]
 
     container: ghcr.io/anybody/anybodycon-github-actions:latest
     env:
       RLM_LICENSE_PASSWORD: ${{ secrets.LICENSE_TEST_SERVER_PASSWORD }}
       RLM_LICENSE: ${{ secrets.LICENSE_TEST_SERVER }}
 
-    runs-on: 
-      group:  ${{ matrix.group }}
-      labels: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
 
     steps:     
       - uses: actions/checkout@v3
