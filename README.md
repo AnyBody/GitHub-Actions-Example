@@ -15,7 +15,7 @@ To use AnyBody in GitHub actions you must specify our linux docker `container:` 
 jobs:
   job-with-anybody:
     runs-on: ubuntu-latest
-    container: ghcr.io/anybody/anybodycon-linux:latest
+    container: ghcr.io/anybody/anybodycon-github-actions:latest
 ...    
 ```
 
