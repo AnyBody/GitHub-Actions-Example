@@ -16,6 +16,7 @@ jobs:
       matrix:
         include:
           - type: ubuntu-latest
+            os: ubuntu-22.04
           - type: self-hosted
             os: Linux
 
