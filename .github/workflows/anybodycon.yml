@@ -15,10 +15,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - type: ubuntu-latest
-            os: ubuntu-22.04
-          - type: self-hosted
-            os: Linux
+          - group: ubuntu-runners
+            label: ubuntu-latest
+          - group: anybody-hosted
+            label: Linux
 
     container: ghcr.io/anybody/anybodycon-github-actions:latest
     env:
@@ -26,8 +26,8 @@ jobs:
       RLM_LICENSE: ${{ secrets.LICENSE_TEST_SERVER }}
 
     runs-on: 
-      - ${{ matrix.type }}
-      - ${{ matrix.os }}
+      group:  ${{ matrix.group }}
+      labels: ${{ matrix.label }}
 
     steps:     
       - uses: actions/checkout@v3
